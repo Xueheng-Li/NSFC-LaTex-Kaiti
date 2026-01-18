@@ -1,8 +1,65 @@
-Main.aux
-Main.bbl
-Main.blg
-Main.fdb_latexmk
-Main.fls
-Main.log
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Bibliography files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Build tool files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Package-specific files
+*.alg
+*.loa
+*.thm
+*.nav
+*.pre
+*.snm
+*.vrb
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.idx
+*.ilg
+*.ind
+*.loe
+*.maf
+*.mlf
+*.mlt
+*.mtc*
+*.nlo
+*.nls
+*.nlg
+*.slo
+*.sls
+*.slg
+
+# Generated PDF (optional - uncomment if needed)
+# *.pdf
+
+# Specific project files
 Main.pdf
-Main.synctex.gz
