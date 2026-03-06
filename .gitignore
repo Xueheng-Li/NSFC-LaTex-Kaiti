@@ -63,3 +63,14 @@
 
 # Specific project files
 Main.pdf
+
+# Local config and workspace files (not for public repo)
+CLAUDE.md
+.omc
+agent_tasks/
+
+# Word temporary/lock files
+~$*
+
+# macOS
+.DS_*

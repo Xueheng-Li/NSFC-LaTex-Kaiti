@@ -1,0 +1,82 @@
+% !TEX program = xelatex
+% 2026年版面上项目申请书 — 分文件编辑入口
+% 编译命令: xelatex 面上_main.tex && bibtex 面上_main && xelatex 面上_main.tex && xelatex 面上_main.tex
+%
+% 各部分文件:
+%   面上_cover.tex             封面页与摘要（提交时取消注释）
+%   面上_part1_立项依据.tex    第一部分：立项依据
+%   面上_part2_研究内容.tex    第二部分：研究内容
+%   面上_part3_研究基础.tex    第三部分：研究基础
+%   面上_part4_其他.tex        第四部分：其他需要说明的情况
+
+
+\documentclass[12pt]{article}
+
+\usepackage{nsfc}
+
+% 设置楷体字体（nsfc.sty 已加载 ctex，此处勿重复加载）
+% AutoFakeBold=true 让 XeLaTeX 合成粗体（STKaiti 无原生粗体）
+\setCJKmainfont[AutoFakeBold=true]{STKaiti}
+\setmainfont{Times New Roman}
+
+% Citation style: author-year in text, numbered list in bibliography
+\usepackage[round,sort]{natbib}
+
+% Additional packages
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{tikz}
+
+% REF environment (for reference lists within sections)
+\setlength{\bibsep}{5pt plus 0.3ex}
+\renewcommand\bibsection{\section*{{\fontsize{12pt}{22pt}\selectfont\setlength{\baselineskip}{20pt}}}}
+\newenvironment{REF}%
+    {\begingroup\fontsize{12pt}{22pt}\selectfont\setlength{\baselineskip}{15pt}}
+    {\endgroup}
+
+% Custom theorem-like commands
+\newcommand{\conjecture}[2]{\noindent\textbf{\underline{猜想#1}： #2}}
+\newcommand{\define}[2]{\noindent\textbf{\underline{定义#1}： #2}}
+\newcommand{\lemma}[2]{\vspace{2mm}\noindent\textbf{\underline{引理#1}： #2}}
+\newcommand{\property}[2]{\noindent\textbf{\underline{性质#1}: #2}}
+\newcommand{\proposition}[2]{\noindent\textbf{\underline{命题#1}： #2}}
+
+% Font size override: 13pt body text with 17pt line spacing
+\RequirePackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{13pt}{17pt}\selectfont}
+
+% Utility commands
+\newcommand{\header}{\textbf}
+\newcommand{\textzhbf}[1]{\textbf{#1}}
+\newcommand{\addImg}[2][1.0]{\includegraphics[width=#1\linewidth]{#2}}
+\newcommand{\myEmph}[1]{\textbf{\textcolor[rgb]{0,0,0.25}{#1}}}
+
+\graphicspath{{figures/}}
+
+
+\begin{document}
+
+% \input{面上_cover}   % 封面页与摘要（提交时取消注释）
+
+\setcounter{page}{1}
+%%%%%%%%% TITLE
+\title{报告正文（2026版）}
+
+\maketitle
+
+{\large 参照以下提纲撰写，要求内容翔实、清晰，层次分明，标题突出。{\bfseries\color{red}申请书正文原则上不超过30页，鼓励简洁表达。}
+\textbf{\nsfClr{请勿删除或改动下述提纲标题及括号中的文字。}}}
+
+\input{面上_part1_立项依据}
+
+\input{面上_part2_研究内容}
+
+\input{面上_part3_研究基础}
+
+\input{面上_part4_其他}
+
+\end{document}

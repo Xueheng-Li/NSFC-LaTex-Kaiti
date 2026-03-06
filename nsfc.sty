@@ -27,10 +27,11 @@
 \newcommand{\nsfClr}[1]{\textcolor[rgb]{0.0,0.44,0.753}{#1}}
 \newcommand{\alert}[1]{\nsfClr{\emph{#1}}}
 \newcommand{\ContentDes}[1]{
-   \setcounter{section}{0}
+   \stepcounter{section}
+   \setcounter{subsection}{0}
    {\large \bf {\alert{#1}} }% %{\vspace*{12pt} \NsfcNote{#2} }%
 }
-\setlength{\parskip}{0.5\baselineskip}
+\setlength{\parskip}{0.3\baselineskip}
 
 
 \def\@maketitle{ %\newpage \null \vskip .01in
@@ -38,25 +39,30 @@
 }
 
 
-
-\usepackage{silence}
+\RequirePackage{silence}
 \hbadness=10000 \vbadness=10000 \vfuzz=30pt \hfuzz=30pt
 \WarningFilter{latex}{Font shape}
+\WarningFilter{latexfont}{Font shape `}
+\WarningFilter{latexfont}{Some font shapes were not available,}
 
 
-\newcommand{\NsfcSection}[3]{{\large
-  \setcounter{section}{#1}
-  \setcounter{subsection}{0}
-  \indent \nsfClr{#1. }{\bfseries{\alert{#2}}}{\alert{#3}}%
-}}
+\newcommand{\NsfcSection}[3]{%
+  \setcounter{section}{#1}%
+  \setcounter{subsection}{0}%
+  {\fontsize{14pt}{18pt}\selectfont
+  \indent \nsfClr{#1. }{\bfseries{\nsfClr{#2}}}{\nsfClr{#3}}}%
+}
 
 
 \renewcommand\refname{
   \textcolor{black}{\hskip 2pt  \emph{\large 参考文献:}}
 }
 
-\def\cvprsubsection{\@startsection {subsection}{2}{\z@}
-   {11pt plus 2pt minus 2pt}{6pt} {\bf}}
+\def\cvprsubsection{\@startsection {subsection}{2}{2\ccwd}
+   {6pt plus 1pt minus 1pt}{3pt} {\bf\color{MSBlue}}}
+
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{2\ccwd}
+   {4pt plus 1pt minus 1pt}{2pt} {\normalsize\bf}}
 \def\cvprssubsect#1{\cvprsubsection*{\large #1}}
 \def\cvprsubsect#1{\cvprsubsection{\hskip -1em.~#1}}
 \def\subsection{\@ifstar\cvprssubsect\cvprsubsect}
@@ -85,6 +91,14 @@
 \newcommand{\equref}[1]{式\ref{#1}}
 \newcommand{\secref}[1]{第\ref{#1}节}
 
-\RequirePackage{silence}
-\WarningFilter{latexfont}{Font shape `}
-\WarningFilter{latexfont}{Some font shapes were not available,}
+% 为bibliography条目添加序号（保持正文author-year引用）
+\RequirePackage{etoolbox}
+\newcounter{bibnum}
+\AtBeginEnvironment{thebibliography}{%
+  \setcounter{bibnum}{0}  % Start from 0
+  \let\olditem\bibitem
+  \def\bibitem[#1]#2{%
+    \stepcounter{bibnum}% Increment our counter before each item
+    \olditem[#1]{#2}[\hspace{0.1em}\thebibnum\hspace{0.1em}]\hspace{-0.3em} % Use our counter for the displayed number
+  }%
+}
